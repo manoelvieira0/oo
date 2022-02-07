@@ -11,11 +11,17 @@ class Conta:
 
     def depositar(self, valor):
         self.__saldo += valor
-        print("Depositado!")
+
+
+    def __pode_sacar(self, valor_a_sacar):
+        valor_disponivel_a_sacar = self.__saldo
+        return valor_a_sacar <= valor_disponivel_a_sacar
 
     def sacar(self, valor):
-        self.__saldo -= valor
-        print("Sacado!")
+        if(self.__pode_sacar(valor)):
+            self.__saldo -= valor
+        else:
+            print("O valor {} passou o limite".format(valor))
 
     def transferir(self, valor, destinatario):
         self.sacar(valor)
